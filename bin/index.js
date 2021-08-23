@@ -11,6 +11,7 @@ import downloadTemplate from './download-template/index.js'
 import createIndex from './questions/create-index.js'
 import initIndex from './questions/init-index.js'
 import chalk from 'chalk'
+
 /**
  * 设计思路
  * 1、解析用户输入的指令
@@ -22,7 +23,7 @@ import chalk from 'chalk'
  */
 
 /**
- * 获取版本号指令
+ * 输出指令版本号
  */
 const packageContent = fs.readFileSync('./package.json')
 const { version } = JSON.parse(packageContent)
@@ -49,7 +50,6 @@ program
     .description('通过选择模版创建项目')
     .action(async () => {
         const answers = await initIndex()
-        console.log(answers)
         const { templateName, name } = answers
         const projectName = name
         downloadTemplate(templateName, projectName, answers)

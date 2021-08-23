@@ -1,17 +1,19 @@
 import execa from 'execa'
-// import fs from 'fs'
+import ora from 'ora'
 import path from 'path'
 // import handlebars from 'handlebars'
 import chalk from 'chalk'
 import logSymbols from 'log-symbols'
-
-export default function (projectName, answers) {
+import readPackageJson from './read-package-json.js'
+import writePackageJson from './write-package-json.js'
+export default async function (projectName, answers) {
     console.log(logSymbols.success, chalk.green('模版拉取完成'))
 
-    // const packagePath = `${projectName}/package.json`
+    // 读取package.json的内容
+    const packageContent = readPackageJson(projectName)
 
-    // const packageContent = fs.readFileSync(packagePath,'utf-8')
-
+    // 修改package.json的内容
+    await writePackageJson(projectName, packageContent, answers)
     // const newPackageContent = handlebars.compile(packageContent)(answers)
 
     // newPackageContent.name = answers.name
@@ -25,16 +27,17 @@ export default function (projectName, answers) {
     // fs.writeFileSync(packagePath, newPackageContent)
 
     // 提示项目创建成功
-    console.log(chalk.green('项目创建成功'))
+    console.log(logSymbols.success, chalk.green('项目创建成功'))
 
     const getRootPath = path.resolve(process.cwd(), projectName)
 
-    // 安装依赖
-    console.log(chalk.blue(`安装依赖`))
+    // 下载之前进行loading
+    const spinner = ora('安装依赖中').start()
 
     // cd到项目中 执行快捷启动指令
     execa('v', {
         cwd: getRootPath,
         stdio: [2, 2, 2],
     })
+    spinner.succeed()
 }
