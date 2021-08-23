@@ -1,17 +1,14 @@
 export default () => {
     return {
         type: 'list',
-        message: '选择vue配置',
-        name: 'middleware',
+        message: '请选择vue版本',
+        name: 'templateName',
         choices: [
             {
-                name: 'vue+router',
+                name: 'vue2',
             },
             {
-                name: 'vue+vuex',
-            },
-            {
-                name: 'vue+vuex+router',
+                name: 'vue3',
             },
         ],
     }

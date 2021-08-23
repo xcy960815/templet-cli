@@ -6,9 +6,8 @@ import templates from '../templates.js'
 import download from 'download-git-repo'
 import ora from 'ora'
 import chalk from 'chalk'
-
 import logSymbols from 'log-symbols'
-import setPackageContent from './set-package-content.js'
+import setPackageContent from '../set-package-content/index.js'
 export default async function (templateName, projectName, answers) {
     // 下载之前进行loading
     const spinner = ora('模版拉取中').start()
@@ -29,7 +28,7 @@ export default async function (templateName, projectName, answers) {
             // 下载成功
             spinner.succeed('模版拉取完成')
             // 现在成功之后 修改package.json 内容
-            setPackageContent()
+            setPackageContent(projectName, answers)
         }
     )
 }

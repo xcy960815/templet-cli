@@ -1,19 +1,13 @@
 // 模版列表
 const templates = {
-    'vue+router+vuex': {
-        desc: 'vue完全体',
-        downloadUrl:
-            'https://gitlab.vdian.net/bigdata/vue-template.git#publish/1.0.0',
+    vue2: {
+        desc: 'vue2 + vuex + route + typescript(javascript)',
+        downloadUrl: 'https://gitlab.vdian.net/bigdata/vue-template.git#master',
     },
-    'vue+router': {
-        desc: 'vue+路由',
+    vue3: {
+        desc: 'vue3 + vuex + route + typescript(javascript)',
         downloadUrl:
-            'https://gitlab.vdian.net/bigdata/vue-template.git#publish/1.0.0',
-    },
-    'vue+vuex': {
-        desc: 'vue+vuex',
-        downloadUrl:
-            'https://gitlab.vdian.net/bigdata/vue-template.git#publish/1.0.0',
+            'https://gitlab.vdian.net/bigdata/vue3-template.git#publish/1.0.0',
     },
 }
 

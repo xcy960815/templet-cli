@@ -22,11 +22,11 @@ import chalk from 'chalk'
  */
 
 /**
- * 版本号指令
+ * 获取版本号指令
  */
 const packageContent = fs.readFileSync('./package.json')
 const { version } = JSON.parse(packageContent)
-program.version(version)
+program.version(version, '-V, --version')
 
 /**
  * 初始化指定版本的指令
@@ -50,6 +50,9 @@ program
     .action(async () => {
         const answers = await initIndex()
         console.log(answers)
+        const { templateName, name } = answers
+        const projectName = name
+        downloadTemplate(templateName, projectName, answers)
     })
 
 /**
@@ -67,5 +70,11 @@ program
             )
         }
     })
+
+program
+    .command('help')
+    .description(
+        `本脚手架是用来初始化大数据前端模版，目前只提供了两个模版（vue2、vue3）`
+    )
 
 program.parse(process.argv)

@@ -5,7 +5,7 @@
     "main": "index.js",
     "type": "module",
     "bin": {
-        "vv": "/bin/index.js"
+        "x": "/bin/index.js"
     },
     "scripts": {
         "test": "rm -rf husky-test && ./bin/index.js"
