@@ -1,14 +1,13 @@
 {
     "name": "weidian-easy-cli",
     "version": "1.0.1",
-    "description": "",
-    "main": "index.js",
+    "description": "自定义脚手架cli",
     "type": "module",
     "bin": {
         "easy": "/bin/index.js"
     },
     "scripts": {
-        "test": "rm -rf husky-test && ./bin/index.js"
+        "test": "node ./bin/index.js"
     },
     "repository": {
         "type": "git",

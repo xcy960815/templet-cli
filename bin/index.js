@@ -4,8 +4,8 @@
 // console.log(process.argv)
 
 import { Command } from 'commander'
+
 import fs from 'fs'
-const program = new Command()
 import templates from './templates.js'
 import downloadTemplate from './download-template/index.js'
 import createIndex from './questions/create-index.js'
@@ -25,6 +25,7 @@ import chalk from 'chalk'
 /**
  * 输出指令版本号
  */
+const program = new Command()
 const packageContent = fs.readFileSync('./package.json')
 const { version } = JSON.parse(packageContent)
 program.version(version, '-V, --version')
