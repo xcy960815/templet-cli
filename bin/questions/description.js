@@ -2,7 +2,7 @@
  * 项目描述
  */
 
-export default () => ({
+module.exports = () => ({
     type: 'input',
     name: 'description',
     message: '请输入项目描述',

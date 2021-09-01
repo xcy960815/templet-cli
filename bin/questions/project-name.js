@@ -2,7 +2,7 @@
  * 项目名称
  */
 
-export default (projectName) => ({
+module.exports = (projectName) => ({
     type: 'input',
     name: 'name',
     message: '请输入项目名称',

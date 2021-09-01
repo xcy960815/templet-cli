@@ -1,8 +1,8 @@
 {
     "name": "weidian-easy-cli",
-    "version": "1.0.1",
+    "version": "1.0.5",
     "description": "自定义脚手架cli",
-    "type": "module",
+    "type": "commonjs",
     "bin": {
         "easy": "/bin/index.js"
     },
@@ -11,7 +11,7 @@
     },
     "repository": {
         "type": "git",
-        "url": " https://github.com/ChongYu-Yease/mini--cli.git"
+        "url": " https://github.com/ChongYu-Yease/mini-cli.git"
     },
     "keywords": [
         "cli",

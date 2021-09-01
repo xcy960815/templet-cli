@@ -1,15 +1,14 @@
-export default () => {
+const { templates } = require('../templates')
+
+const choices = []
+for (const key in templates) {
+    choices.push({ name: key })
+}
+module.exports = () => {
     return {
         type: 'list',
         message: '请选择vue版本',
         name: 'templateName',
-        choices: [
-            {
-                name: 'vue2',
-            },
-            {
-                name: 'vue3',
-            },
-        ],
+        choices,
     }
 }

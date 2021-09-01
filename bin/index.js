@@ -3,15 +3,16 @@
 // 原生获取用户指令的方式 较为麻烦 所以这里采用 commander
 // console.log(process.argv)
 
-import { Command } from 'commander'
-
-import fs from 'fs'
-import templates from './templates.js'
-import downloadTemplate from './download-template/index.js'
-import createIndex from './questions/create-index.js'
-import initIndex from './questions/init-index.js'
-import chalk from 'chalk'
-
+const { Command } = require('commander')
+const fs = require('fs')
+const { templates } = require('./templates.js')
+const downloadTemplate = require('./download-template/index.js')
+const createIndex = require('./questions/create-index.js')
+const initIndex = require('./questions/init-index.js')
+const chalk = require('chalk')
+const path = require('path')
+const { fileURLToPath } = require('url')
+const checkNodeVersion = require('./check-node-version.js')
 /**
  * 设计思路
  * 1、解析用户输入的指令
@@ -26,9 +27,11 @@ import chalk from 'chalk'
  * 输出指令版本号
  */
 const program = new Command()
-const packageContent = fs.readFileSync('./package.json')
-const { version } = JSON.parse(packageContent)
-program.version(version, '-V, --version')
+// const __dirname1 = fileURLToPath(import.meta.url)
+// path.resolve(__dirname, '../../package.json')
+// const packageContent = fs.readFileSync('../package.json')
+// const { version } = JSON.parse(packageContent)
+program.version('1.0.5', '-V, --version')
 
 /**
  * 初始化指定版本的指令

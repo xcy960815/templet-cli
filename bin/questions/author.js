@@ -2,7 +2,7 @@
  * 作者
  */
 
-export default (author) => {
+module.exports = (author) => {
     return {
         type: 'input',
         name: 'author',

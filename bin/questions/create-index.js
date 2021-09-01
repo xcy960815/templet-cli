@@ -1,13 +1,13 @@
 /**
- * 问题
+ * 选择指定版本的问题
  */
-import inquirer from 'inquirer'
-import projectName from './project-name.js'
-import version from './version.js'
-import description from './description.js'
-import author from './author.js'
-import getUserInfo from '../user-info/get-user-info.js'
-export default async (projectname) => {
+const inquirer = require('inquirer')
+const projectName = require('./project-name.js')
+const version = require('./version.js')
+const description = require('./description.js')
+const author = require('./author.js')
+const getUserInfo = require('../user-info/get-user-info.js')
+module.exports = async (projectname) => {
     // 获取当前系统用户名称
     const { username } = await getUserInfo()
     projectname = projectname || 'project'
