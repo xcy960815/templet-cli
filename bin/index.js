@@ -31,7 +31,7 @@ const program = new Command()
 // path.resolve(__dirname, '../../package.json')
 // const packageContent = fs.readFileSync('../package.json')
 // const { version } = JSON.parse(packageContent)
-program.version('1.0.5', '-V, --version')
+program.version('1.0.6', '-V, --version')
 
 /**
  * 初始化指定版本的指令
