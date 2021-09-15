@@ -1,6 +1,6 @@
 {
     "name": "weidian-easy-cli",
-    "version": "1.0.6",
+    "version": "1.0.8",
     "description": "自定义脚手架cli",
     "type": "commonjs",
     "bin": {

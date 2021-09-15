@@ -4,15 +4,15 @@
 // console.log(process.argv)
 
 const { Command } = require('commander')
-const fs = require('fs')
+// const fs = require('fs')
 const { templates } = require('./templates.js')
 const downloadTemplate = require('./download-template/index.js')
 const createIndex = require('./questions/create-index.js')
 const initIndex = require('./questions/init-index.js')
 const chalk = require('chalk')
 const path = require('path')
-const { fileURLToPath } = require('url')
-const checkNodeVersion = require('./check-node-version.js')
+// const { fileURLToPath } = require('url')
+// const checkNodeVersion = require('./check-node-version.js')
 /**
  * 设计思路
  * 1、解析用户输入的指令
@@ -31,7 +31,7 @@ const program = new Command()
 // path.resolve(__dirname, '../../package.json')
 // const packageContent = fs.readFileSync('../package.json')
 // const { version } = JSON.parse(packageContent)
-program.version('1.0.6', '-V, --version')
+program.version('1.0.8', '-V, --version')
 
 /**
  * 初始化指定版本的指令

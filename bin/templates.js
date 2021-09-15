@@ -14,5 +14,25 @@ const templates = {
         downloadUrl:
             'https://github.com/ChongYu-Yease/vue3-vite-template.git#master',
     },
+    'rollup-js-template': {
+        desc: '(开源使用) 用rollup打包js的模版',
+        downloadUrl:
+            'https://github.com/ChongYu-Yease/rollup-js-template.git#master',
+    },
+    'rollup-ts-template': {
+        desc: '(开源使用)  用rollup打包ts的模版',
+        downloadUrl:
+            'https://github.com/ChongYu-Yease/rollup-ts-template.git#master',
+    },
+    'rollup-vue-components': {
+        desc: '(开源使用)  用rollup打包vue组件的模版',
+        downloadUrl:
+            'https://github.com/ChongYu-Yease/rollup-vue-components.git#master',
+    },
+    'rollup-vue-components-ts': {
+        desc: '(开源使用)  用rollup打包vue-ts组件的模版',
+        downloadUrl:
+            'https://github.com/ChongYu-Yease/rollup-vue-components-ts.git#master',
+    },
 }
 module.exports.templates = templates

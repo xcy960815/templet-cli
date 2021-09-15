@@ -7,7 +7,7 @@ for (const key in templates) {
 module.exports = () => {
     return {
         type: 'list',
-        message: '请选择vue版本',
+        message: '请选择模版版本',
         name: 'templateName',
         choices,
     }
