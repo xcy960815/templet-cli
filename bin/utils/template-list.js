@@ -35,4 +35,4 @@ const templates = {
             'https://github.com/ChongYu-Yease/rollup-vue-components-ts.git#master',
     },
 }
-module.exports.templates = templates
+module.exports = { templates }

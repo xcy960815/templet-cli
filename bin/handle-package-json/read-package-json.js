@@ -1,18 +1,18 @@
-// 获取package.json
-
+const path = require('path')
 const fs = require('fs')
-// import logSymbols from ('log-symbols')
-// console.log('logSymbols', logSymbols)
 const chalk = require('chalk')
-module.exports = function getPackageJson(projectName) {
+module.exports = function (projectName) {
     // package.json的路径
-    const packagePath = `${projectName}/package.json`
-    // logSymbols.success,
-    console.log(chalk.green('开始读取package.json文件'))
+    // const packagePath = `${projectName}/package.json`
+    const packagePath = path.resolve(
+        process.cwd(),
+        `${projectName}/package.json`
+    )
+    console.log(chalk.yellowBright('开始读取package.json文件'))
 
     const packagejson = fs.readFileSync(packagePath)
-    // logSymbols.success,
-    console.log(chalk.green('读取package.json文件完毕'))
+
+    console.log(chalk.greenBright('package.json文件读取完毕'))
 
     return JSON.parse(packagejson)
 }

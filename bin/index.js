@@ -1,49 +1,36 @@
 #!/usr/bin/env node
-//获取用户命令 方式
-// 原生获取用户指令的方式 较为麻烦 所以这里采用 commander
-// console.log(process.argv)
 
 const { Command } = require('commander')
-// const fs = require('fs')
-const { templates } = require('./templates.js')
-const downloadTemplate = require('./download-template/index.js')
-const createIndex = require('./questions/create-index.js')
-const initIndex = require('./questions/init-index.js')
+const listLog = require('./utils/list-log')
+const downloadTemplate = require('./utils/download-template')
+const templateQuestions = require('./questions/template-questions')
+const initQuestions = require('./questions/init-questions')
+const handleSetPackageJson = require('./handle-package-json/index')
+const handleInstallDependencies = require('./utils/handle-Install-dependencies')
 const chalk = require('chalk')
-const path = require('path')
-// const { fileURLToPath } = require('url')
-// const checkNodeVersion = require('./check-node-version.js')
-/**
- * 设计思路
- * 1、解析用户输入的指令
- * list 指令
- * create <templateName> <projectName> 指令
- * init  指令
- * 除了list 指令之外统统都需要询问用户 projectName version desc
- *
- */
-
-/**
- * 输出指令版本号
- */
 const program = new Command()
-// const __dirname1 = fileURLToPath(import.meta.url)
-// path.resolve(__dirname, '../../package.json')
-// const packageContent = fs.readFileSync('../package.json')
-// const { version } = JSON.parse(packageContent)
-program.version('1.0.8', '-V, --version')
+
+program.version(require('../package.json').version, '-v, --version')
 
 /**
  * 初始化指定版本的指令
  */
 program
     .command('create <templateName> <projectName>')
-    .description('通过🈯️模版创建项目')
+    .description(
+        chalk.yellowBright(
+            '通过模版创建项目,不知道模板列表的可以执行 list 指令'
+        )
+    )
     .action(async (templateName, projectName) => {
         // 获取用户配置
-        const answers = await createIndex(projectName)
-
-        downloadTemplate(templateName, projectName, answers)
+        const answers = await templateQuestions(projectName)
+        // 下载模板
+        await downloadTemplate(templateName, projectName, answers)
+        // 现在成功之后 修改package.json 内容
+        await handleSetPackageJson(projectName, answers)
+        // 安装依赖包
+        handleInstallDependencies(templateName, projectName)
     })
 
 /**
@@ -51,12 +38,16 @@ program
  */
 program
     .command('init')
-    .description('通过选择模版创建项目')
+    .description('初始化模板')
     .action(async () => {
-        const answers = await initIndex()
-        const { templateName, name } = answers
-        const projectName = name
-        downloadTemplate(templateName, projectName, answers)
+        const answers = await initQuestions()
+        const { templateName, projectName } = answers
+        // 下载模板
+        await downloadTemplate(templateName, projectName, answers)
+        // 现在成功之后 修改package.json 内容
+        await handleSetPackageJson(projectName, answers)
+        // 安装依赖包
+        handleInstallDependencies(templateName, projectName)
     })
 
 /**
@@ -66,13 +57,7 @@ program
     .command('list')
     .description('查看所有模版列表')
     .action(() => {
-        for (const key in templates) {
-            console.log(
-                chalk.greenBright(`${key}`) +
-                    ' : ' +
-                    chalk.yellowBright(`${templates[key].desc}`)
-            )
-        }
+        listLog()
     })
 
 program

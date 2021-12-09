@@ -1,6 +1,6 @@
 {
     "name": "weidian-easy-cli",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "自定义脚手架cli",
     "type": "commonjs",
     "bin": {
@@ -28,6 +28,8 @@
         "handlebars": "^4.7.7",
         "inquirer": "^8.1.2",
         "log-symbols": "^5.0.0",
-        "ora": "^5.4.1"
+        "ora": "^5.4.1",
+        "progress": "^2.0.3",
+        "single-line-log": "^1.1.2"
     }
 }

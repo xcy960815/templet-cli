@@ -2,9 +2,12 @@
  * 项目名称
  */
 
-module.exports = (projectName) => ({
-    type: 'input',
-    name: 'name',
-    message: '请输入项目名称',
-    default: projectName,
-})
+module.exports = (projectName) => {
+    projectName = projectName ? projectName : 'project'
+    return {
+        type: 'input',
+        name: 'projectName',
+        message: '请输入项目名称',
+        default: projectName,
+    }
+}

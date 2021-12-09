@@ -1,4 +1,4 @@
-const { templates } = require('../templates')
+const { templates } = require('../utils/template-list')
 
 const choices = []
 for (const key in templates) {

@@ -1,8 +1,7 @@
 // 获取package.json
 
 const fs = require('fs')
-// import logSymbols from ('log-symbols')
-// console.log('logSymbols', logSymbols)
+const path = require('path')
 const chalk = require('chalk')
 /**
  * @param projectName 项目名称
@@ -15,9 +14,12 @@ module.exports = async function writePackageJson(
     answers
 ) {
     // package.json的路径
-    const packagePath = `${projectName}/package.json`
-    // logSymbols.success,
-    console.log(chalk.green('开始修改package.json文件'))
+    // const packagePath = `${projectName}/package.json`
+    const packagePath = path.resolve(
+        process.cwd(),
+        `${projectName}/package.json`
+    )
+    console.log(chalk.yellowBright('开始修改package.json文件'))
     // 修改package name
     packageContent.name = answers.name ? answers.name : ''
     // 修改package version
@@ -28,6 +30,6 @@ module.exports = async function writePackageJson(
     packageContent.author = answers.author ? answers.author : ''
 
     await fs.writeFileSync(packagePath, JSON.stringify(packageContent))
-    // logSymbols.success,
-    console.log(chalk.green('修改package.json文件完毕'))
+
+    console.log(chalk.greenBright('修改package.json文件完毕'))
 }
