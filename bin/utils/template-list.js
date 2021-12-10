@@ -7,7 +7,7 @@ const templates = {
     vue3: {
         desc: '(内部使用) vue3 + vuex + route + element-plus + typescript(javascript)',
         downloadUrl:
-            'https://gitlab.vdian.net/bigdata/vue3-template.git##master',
+            'https://gitlab.vdian.net/bigdata/vue3-template.git#master',
     },
     'vite+vue3': {
         desc: '(开源使用) vue3 + vuex + route + vite + element-plus + typescript(javascript)',
