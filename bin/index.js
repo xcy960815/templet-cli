@@ -6,10 +6,10 @@ const downloadTemplate = require('./utils/download-template')
 const templateQuestions = require('./questions/template-questions')
 const initQuestions = require('./questions/init-questions')
 const handleSetPackageJson = require('./handle-package-json/index')
-const handleInstallDependencies = require('./utils/handle-Install-dependencies')
+const installDependencies = require('./utils/install-dependencies')
 const chalk = require('chalk')
 const program = new Command()
-
+const checkVersion = require('./utils/check-version')
 program.version(require('../package.json').version, '-v, --version')
 
 /**
@@ -23,14 +23,16 @@ program
         )
     )
     .action(async (templateName, projectName) => {
-        // 获取用户配置
+        // 检查版本号
+        await checkVersion()
+        //收集用户配置
         const answers = await templateQuestions(projectName)
         // 下载模板
         await downloadTemplate(templateName, projectName, answers)
         // 现在成功之后 修改package.json 内容
         await handleSetPackageJson(projectName, answers)
         // 安装依赖包
-        handleInstallDependencies(templateName, projectName)
+        installDependencies(templateName, projectName)
     })
 
 /**
@@ -40,6 +42,9 @@ program
     .command('init')
     .description('初始化模板')
     .action(async () => {
+        // 检查版本号
+        await checkVersion()
+        // 收集用户信息
         const answers = await initQuestions()
         const { templateName, projectName } = answers
         // 下载模板
@@ -47,7 +52,7 @@ program
         // 现在成功之后 修改package.json 内容
         await handleSetPackageJson(projectName, answers)
         // 安装依赖包
-        handleInstallDependencies(templateName, projectName)
+        installDependencies(templateName, projectName)
     })
 
 /**
@@ -56,7 +61,9 @@ program
 program
     .command('list')
     .description('查看所有模版列表')
-    .action(() => {
+    .action(async () => {
+        // 检查版本号
+        await checkVersion()
         listLog()
     })
 

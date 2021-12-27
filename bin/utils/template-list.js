@@ -9,7 +9,7 @@ const templates = {
         downloadUrl:
             'https://gitlab.vdian.net/bigdata/vue3-template.git#master',
     },
-    'vite+vue3': {
+    'vite + vue3': {
         desc: '(开源使用) vue3 + vuex + route + vite + element-plus + typescript(javascript)',
         downloadUrl:
             'https://github.com/ChongYu-Yease/vue3-vite-template.git#master',

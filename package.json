@@ -1,10 +1,10 @@
 {
     "name": "weidian-easy-cli",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "自定义脚手架cli",
     "type": "commonjs",
     "bin": {
-        "easy": "/bin/index.js"
+        "a": "/bin/index.js"
     },
     "scripts": {
         "test": "node ./bin/index.js"
@@ -22,6 +22,8 @@
     "license": "MIT",
     "dependencies": {
         "chalk": "^4.1.2",
+        "co": "^4.6.0",
+        "co-prompt": "^1.0.0",
         "commander": "^8.1.0",
         "download-git-repo": "^3.0.2",
         "execa": "^5.1.1",
@@ -30,6 +32,7 @@
         "log-symbols": "^5.0.0",
         "ora": "^5.4.1",
         "progress": "^2.0.3",
+        "request": "^2.88.2",
         "single-line-log": "^1.1.2"
     }
 }
