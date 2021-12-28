@@ -1,3 +1,11 @@
+### 功能亮点
+
+    1.前置版本检查，无需手动更新，自动追寻最新版本cli
+    2.提供多种开发所需框架，vue2、vue3、vue3+rollup-js-template、rollup-ts-template、rollup-vue-components、rollup-vue-components-ts 多套内置模板
+    3.自动选择最优dns下载框架模板，用户无需等待过长的时间
+    4.重复的项目名称可根据用户按选择进行合理分配
+    5.用户的配置实时的写入到项目的package.json中
+
 ### 安装
 
 ```shell

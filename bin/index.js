@@ -28,7 +28,7 @@ program
         await checkInternet()
         // 检查版本号
         await checkVersion()
-        //收集用户配置
+        // 收集用户配置
         const answers = await templateQuestions(projectName)
         // 检查文件
         const checkedProjectName = await checkFolder(projectName)
