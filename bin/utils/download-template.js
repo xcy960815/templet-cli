@@ -5,7 +5,6 @@ const { promisify } = require('util')
 const { templates } = require('./template-list.js')
 const chalk = require('chalk')
 const ora = require('ora')
-// const ProgressBar = require('progress')
 
 /**
  *
@@ -16,6 +15,7 @@ const ora = require('ora')
 module.exports = async function (templateName, projectName) {
     // 通过 templateName 获取下载地址
     const { downloadUrl } = templates[templateName] //通过模板查找下载url
+
     const spinner = ora(chalk.green('开始拉取模版...'))
     // 包装成一个promise方法.
     const download = promisify(require('download-git-repo'))

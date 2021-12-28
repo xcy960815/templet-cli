@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const { Command } = require('commander')
 const listLog = require('./utils/list-log')
 const downloadTemplate = require('./utils/download-template')
@@ -10,6 +9,8 @@ const installDependencies = require('./utils/install-dependencies')
 const chalk = require('chalk')
 const program = new Command()
 const checkVersion = require('./utils/check-version')
+const checkInternet = require('./utils/check-internet')
+const checkFolder = require('./utils/check-folder')
 program.version(require('../package.json').version, '-v, --version')
 
 /**
@@ -23,16 +24,20 @@ program
         )
     )
     .action(async (templateName, projectName) => {
+        // 检查网络
+        await checkInternet()
         // 检查版本号
         await checkVersion()
         //收集用户配置
         const answers = await templateQuestions(projectName)
+        // 检查文件
+        const checkedProjectName = await checkFolder(projectName)
         // 下载模板
-        await downloadTemplate(templateName, projectName, answers)
+        await downloadTemplate(templateName, checkedProjectName, answers)
         // 现在成功之后 修改package.json 内容
-        await handleSetPackageJson(projectName, answers)
+        await handleSetPackageJson(checkedProjectName, answers)
         // 安装依赖包
-        installDependencies(templateName, projectName)
+        installDependencies(templateName, checkedProjectName)
     })
 
 /**
@@ -42,17 +47,21 @@ program
     .command('init')
     .description('初始化模板')
     .action(async () => {
+        // 检查网络
+        await checkInternet()
         // 检查版本号
         await checkVersion()
         // 收集用户信息
         const answers = await initQuestions()
         const { templateName, projectName } = answers
+        // 检查文件
+        const checkedProjectName = await checkFolder(projectName)
         // 下载模板
-        await downloadTemplate(templateName, projectName, answers)
+        await downloadTemplate(templateName, checkedProjectName, answers)
         // 现在成功之后 修改package.json 内容
-        await handleSetPackageJson(projectName, answers)
+        await handleSetPackageJson(checkedProjectName, answers)
         // 安装依赖包
-        installDependencies(templateName, projectName)
+        installDependencies(templateName, checkedProjectName)
     })
 
 /**
