@@ -4,7 +4,6 @@ const fs = require('fs')
  * @param {文件地址} filePath
  */
 module.exports = (filePath) => {
-    const files = []
     if (fs.existsSync(filePath)) {
         const files = fs.readdirSync(filePath)
         files.forEach((file) => {

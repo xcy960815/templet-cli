@@ -7,7 +7,7 @@
         "easy": "/bin/index.js"
     },
     "scripts": {
-        "test": "node ./bin/index.js"
+        "upload": "npm --registry https://registry.npmjs.org/ publish"
     },
     "repository": {
         "type": "git",
