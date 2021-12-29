@@ -11,18 +11,14 @@ const program = new Command()
 const checkVersion = require('./utils/check-version')
 const checkInternet = require('./utils/check-internet')
 const checkFolder = require('./utils/check-folder')
-program.version(require('../package.json').version, '-v, --version')
+program.version(require('../package.json').version, '-v,-V, --version')
 
 /**
  * 初始化指定版本的指令
  */
 program
     .command('create <templateName> <projectName>')
-    .description(
-        chalk.yellowBright(
-            '通过模版创建项目,不知道模板列表的可以执行 list 指令'
-        )
-    )
+    .description(chalk.yellowBright('通过指定模版创建项目'))
     .action(async (templateName, projectName) => {
         // 检查网络
         await checkInternet()
@@ -45,7 +41,7 @@ program
  */
 program
     .command('init')
-    .description('初始化模板')
+    .description(chalk.greenBright('初始化模板'))
     .action(async () => {
         // 检查网络
         await checkInternet()
@@ -69,7 +65,7 @@ program
  * */
 program
     .command('list')
-    .description('查看所有模版列表')
+    .description(chalk.redBright('查看所有模版列表'))
     .action(async () => {
         // 检查版本号
         await checkVersion()
@@ -78,8 +74,24 @@ program
 
 program
     .command('help')
-    .description(
-        `本脚手架是用来初始化大数据前端模版，目前只提供了两个模版（vue2、vue3）`
-    )
+    .description('脚手架帮助指令')
+    .action(() => {
+        console.log()
+        console.log(
+            `${chalk.red('easy list')}:${chalk.inverse('查看所有模板列表')}`
+        )
+        console.log()
+
+        console.log(
+            `${chalk.red('easy init')}:${chalk.green('自定义选择模板')}`
+        )
+        console.log()
+        console.log(
+            `${chalk.red('easy create <模板名称> <项目名称>')}:${chalk.green(
+                '指定模板名称创建项目'
+            )}`
+        )
+        console.log()
+    })
 
 program.parse(process.argv)
