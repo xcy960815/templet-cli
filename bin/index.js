@@ -78,18 +78,22 @@ program
     .action(() => {
         console.log()
         console.log(
-            `${chalk.red('easy list')}:${chalk.inverse('查看所有模板列表')}`
+            `${chalk.blueBright('easy list')} : ${chalk.blueBright(
+                '查看所有模板列表'
+            )}`
         )
         console.log()
 
         console.log(
-            `${chalk.red('easy init')}:${chalk.green('自定义选择模板')}`
+            `${chalk.redBright('easy init')} : ${chalk.redBright(
+                '自定义选择模板'
+            )}`
         )
         console.log()
         console.log(
-            `${chalk.red('easy create <模板名称> <项目名称>')}:${chalk.green(
-                '指定模板名称创建项目'
-            )}`
+            `${chalk.yellowBright(
+                'easy create <模板名称> <项目名称>'
+            )} : ${chalk.yellowBright('指定模板名称创建项目')}`
         )
         console.log()
     })
