@@ -4,7 +4,7 @@
     "description": "模板脚手架,内置各种vue模板、rollup-js、rollup-ts、rollup-vue-js、rollup-vue-ts构建模板",
     "type": "commonjs",
     "bin": {
-        "easy": "/bin/index.js"
+        "tem": "/bin/index.js"
     },
     "scripts": {
         "upload": "npm --registry https://registry.npmjs.org/ publish"

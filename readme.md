@@ -15,7 +15,7 @@
 #### 指令 1
 
 ```shell
-easy list
+tem list
 
     模板名称  :  模板描述
     vue2  :  (内部使用) vue2 + vuex + route + element-ui + typescript(javascript)
@@ -31,7 +31,7 @@ easy list
 #### 指令 2
 
 ```shell
-easy init
+tem init
 
     ? 请选择模版版本 (Use arrow keys)
     ❯ vue2
@@ -46,8 +46,8 @@ easy init
 #### 指令 3
 
 ```shell
-easy create <templateName> <projectName>
+tem create <templateName> <projectName>
 
-    templateName --> 模板名称  不知道模板名称可以执行 easy list 查看
+    templateName --> 模板名称  不知道模板名称可以执行 tem list 查看
     projectName --> 项目名称   自己的项目名称
 ```

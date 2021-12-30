@@ -78,21 +78,21 @@ program
     .action(() => {
         console.log()
         console.log(
-            `${chalk.blueBright('easy list')} : ${chalk.blueBright(
+            `${chalk.blueBright('tem list')} : ${chalk.blueBright(
                 '查看所有模板列表'
             )}`
         )
         console.log()
 
         console.log(
-            `${chalk.redBright('easy init')} : ${chalk.redBright(
+            `${chalk.redBright('tem init')} : ${chalk.redBright(
                 '自定义选择模板'
             )}`
         )
         console.log()
         console.log(
             `${chalk.yellowBright(
-                'easy create <模板名称> <项目名称>'
+                'tem create <模板名称> <项目名称>'
             )} : ${chalk.yellowBright('指定模板名称创建项目')}`
         )
         console.log()
