@@ -9,7 +9,7 @@
 ### 安装
 
 ```shell
- npm install weidian-easy-cli -g
+ npm install templet-cli -g
 ```
 
 #### 指令 1
