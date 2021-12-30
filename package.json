@@ -1,6 +1,6 @@
 {
     "name": "templet-cli",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "模板脚手架,内置各种vue模板、rullop-js、rullop-ts、rullup-vue-js、rullop-vue-ts构建模板",
     "type": "commonjs",
     "bin": {
