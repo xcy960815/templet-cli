@@ -2,14 +2,18 @@ const semver = require('semver')
 const co = require('co')
 const prompt = require('co-prompt')
 const chalk = require('chalk')
-const packageContent = require('../../package.json')
+// const packageContent = require('../../package.json')
 const { promisify } = require('util')
 const uploadVersion = require('./upload-version')
+const fs = require('fs')
+const path = require('path')
+const packagePath = path.resolve(__dirname, '../../package.json')
+const { name, version } = JSON.parse(fs.readFileSync(packagePath))
+
 module.exports = async () => {
     const request = promisify(require('request'))
     const result = await request({
-        //由于网络等原因，此处改为https://registry.npm.taobao.org/weidian-easy-cli
-        url: 'https://registry.npmjs.org/weidian-easy-cli',
+        url: `https://registry.npmjs.org/${name}`,
         //为了用户体验，这里时间不能太长
         timeout: 3000,
     })
@@ -20,15 +24,13 @@ module.exports = async () => {
         const latestVersion = parseBody['dist-tags'].latest
 
         // 当前版本号
-        const currentVersion = packageContent.version
+        const currentVersion = version
 
         // 版本号对比
         const hasNewVersion = semver.lt(currentVersion, latestVersion)
         if (hasNewVersion) {
             console.log(
-                chalk.yellow(
-                    '  A newer version of weidian-easy-cli is available'
-                )
+                chalk.yellow(`  A newer version of ${name} is available`)
             )
             console.log('  最新版本:    ' + chalk.green(latestVersion))
             console.log('  当前版本:    ' + chalk.red(currentVersion))
@@ -39,7 +41,7 @@ module.exports = async () => {
                 )
             })
             if (['y', 'yes'].includes(uploadResult.toLowerCase())) {
-                await uploadVersion()
+                await uploadVersion(latestVersion)
             } else if (['n', 'no'].includes(uploadResult.toLowerCase())) {
                 console.log(chalk.red('已放弃版本更新'))
             }
