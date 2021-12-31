@@ -9,14 +9,21 @@ const fs = require('fs')
 const path = require('path')
 const packagePath = path.resolve(__dirname, '../../package.json')
 const { name, version } = JSON.parse(fs.readFileSync(packagePath))
-
+const ora = require('ora')
 module.exports = async () => {
+    console.log()
+    const spinner = ora(chalk.green('正在检查脚手架版本'))
+    spinner.start()
     const request = promisify(require('request'))
     const result = await request({
         url: `https://registry.npmjs.org/${name}`,
         //为了用户体验，这里时间不能太长
         timeout: 3000,
+    }).catch(() => {
+        spinner.fail(chalk.red('😔 脚手架版本检查失败请重试一次'))
+        process.exit(1)
     })
+    spinner.succeed(chalk.green('🎉 手架版本检查完成\n'))
     const { body, statusCode } = result
     if (statusCode === 200) {
         const parseBody = JSON.parse(body)

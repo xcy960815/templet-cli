@@ -19,7 +19,7 @@ module.exports = async function writePackageJson(
         process.cwd(),
         `${projectName}/package.json`
     )
-    console.log(chalk.yellowBright('开始修改package.json文件'))
+    console.log(`⌛️ ${chalk.yellowBright('开始修改package.json文件')}`)
     // 修改package name
     packageContent.name = answers.name ? answers.name : ''
     // 修改package version
@@ -28,8 +28,6 @@ module.exports = async function writePackageJson(
     packageContent.description = answers.description ? answers.description : ''
     // 修改package  author
     packageContent.author = answers.author ? answers.author : ''
-
     await fs.writeFileSync(packagePath, JSON.stringify(packageContent))
-
-    console.log(chalk.greenBright('修改package.json文件完毕'))
+    console.log(`🎉 ${chalk.greenBright('修改package.json文件完毕')}`)
 }

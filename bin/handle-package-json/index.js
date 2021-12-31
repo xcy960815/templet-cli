@@ -7,5 +7,5 @@ module.exports = async function (projectName, answers) {
     // 修改package.json的内容
     await writePackageJson(projectName, packageContent, answers)
     // 提示项目创建成功 logSymbols.success,
-    console.log(chalk.green('项目创建成功'))
+    console.log(`${chalk.green('【tem cli】项目创建成功')}`)
 }

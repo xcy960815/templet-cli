@@ -5,7 +5,6 @@ const { promisify } = require('util')
 const { templates } = require('./template-list.js')
 const chalk = require('chalk')
 const ora = require('ora')
-
 /**
  *
  * @param {模板名称} templateName
@@ -24,7 +23,7 @@ module.exports = async function (templateName, projectName) {
         // 下载模版
         spinner.start()
         await download(`direct:${downloadUrl}`, projectName, { clone: true })
-        spinner.succeed(chalk.green('模版拉取完成'))
+        spinner.succeed(chalk.green('===> 模版拉取完成\n'))
     } catch (error) {
         spinner.fail(
             chalk.red(`模版拉取失败,失败原因:${chalk.red(error.message)}`)

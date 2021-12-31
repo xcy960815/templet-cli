@@ -4,7 +4,7 @@ const co = require('co')
 const prompt = require('co-prompt')
 const deleteFolder = require('./delete-folder')
 const chalk = require('chalk')
-
+const ora = require('ora')
 /* 
  1. fs.stat  检测是文件还是目录(目录 文件是否存在) 
  2. fs.mkdir  创建目录 （创建之前先判断是否存在） 
@@ -44,17 +44,18 @@ ${chalk.yellowBright('检测到当前路径下有跟项目重复的文件夹,是
     ${chalk.greenBright(
         'N -> 保留重名的文件夹并基于当前文件夹创建一个随机的文件夹后缀'
     )}
+    
     `
             )
         })
         if (['y', 'yes'].includes(askResult.toLowerCase())) {
             // 当前命令所在的地址
             const cliCurrentPath = process.cwd()
-
             const folderPath = path.resolve(cliCurrentPath, folderName)
+            console.log(` ${chalk.green('===> 开始删除重复文件')}`)
             // 删除文件夹
-            deleteFolder(folderPath)
-            console.log(chalk.greenBright('文件删除成功'))
+            await deleteFolder(folderPath)
+            console.log(chalk.green('===> 重复文件删除成功'))
         } else if (['n', 'no'].includes(askResult.toLowerCase())) {
             const currentDate = new Date()
             const year = currentDate.getFullYear()
@@ -70,6 +71,14 @@ ${chalk.yellowBright('检测到当前路径下有跟项目重复的文件夹,是
                     folderName
                 )}`
             )
+        } else {
+            // 当前命令所在的地址
+            const cliCurrentPath = process.cwd()
+            const folderPath = path.resolve(cliCurrentPath, folderName)
+            console.log(`${chalk.green('===> 开始文件删除\n')}`)
+            // 删除文件夹
+            await deleteFolder(folderPath)
+            console.log(chalk.green('===> 文件删除成功\n'))
         }
     }
     return folderName

@@ -1,6 +1,23 @@
-const { templates } = require('./template-list.js')
+// const { templates } = require('./template-list.js')
 const chalk = require('chalk')
-module.exports = function () {
+const { promisify } = require('util')
+const request = promisify(require('request'))
+const ora = require('ora')
+// 加速方案 来自于 https://zhuanlan.zhihu.com/p/337469043
+module.exports = async function () {
+    console.log()
+    const spinner = ora(chalk.green('正在查询模板列表'))
+    spinner.start()
+    const result = await request({
+        url: 'https://raw.fastgit.org/ChongYu-Yease/template-list/master/template-list.json',
+        timeout: 3000,
+    }).catch(() => {
+        spinner.fail(chalk.red('😔 模版拉取失败,请检查网络连接后再试一次'))
+        process.exit(1)
+    })
+    spinner.succeed(chalk.green('🎉 模板列表查询完成'))
+    console.log()
+    const templates = JSON.parse(result.body)
     const templateNames = Object.keys(templates)
     // 英文的最大长度
     const enMaxLength = templateNames.reduce((previousValue, currentValue) => {
@@ -17,7 +34,6 @@ module.exports = function () {
     for (let i = 0; i < fillingLength; i++) {
         fillingContent += ' '
     }
-
     // 输出提示
     console.log(
         `${chalk.redBright(
@@ -46,6 +62,4 @@ module.exports = function () {
             )
         }
     }
-
-    // console.table(templates, ['desc'])
 }
