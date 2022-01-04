@@ -80,6 +80,11 @@ const initConfig = async () => {
             stdio: [2, 2, 2],
         })
     } else {
+        // const installCommand = 'npm install'
+        // await execa(installCommand, {
+        //     shell: true,
+        //     stdio: [2, 2, 2],
+        // })
         // 获取cli指令
         const { shellName } = await initQuestions()
         // 读取项目的package.json的内容

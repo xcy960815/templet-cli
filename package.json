@@ -1,10 +1,10 @@
 {
     "name": "templet-cli",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "模板脚手架,内置各种vue模板、rollup-js、rollup-ts、rollup-vue-js、rollup-vue-ts、vscode-webview-ts构建模板，无需配置,一键配置使用",
     "type": "commonjs",
     "bin": {
-        "tem": "/bin/index.js"
+        "hellow": "/bin/index.js"
     },
     "scripts": {
         "dev": "cross-env NODE_ENV=development ENV=daily  node ./bin/init-config.js",
