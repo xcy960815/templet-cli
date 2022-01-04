@@ -10,8 +10,10 @@ const path = require('path')
 const packagePath = path.resolve(__dirname, '../../package.json')
 const { name, version } = JSON.parse(fs.readFileSync(packagePath))
 const ora = require('ora')
+/**
+ * 检查线上最新的脚手架版本号
+ */
 module.exports = async () => {
-    console.log()
     const spinner = ora(chalk.green('正在检查脚手架版本'))
     spinner.start()
     const request = promisify(require('request'))
@@ -29,10 +31,8 @@ module.exports = async () => {
         const parseBody = JSON.parse(body)
         // 获取最新的cli版本
         const latestVersion = parseBody['dist-tags'].latest
-
         // 当前版本号
         const currentVersion = version
-
         // 版本号对比
         const hasNewVersion = semver.lt(currentVersion, latestVersion)
         if (hasNewVersion) {
@@ -41,10 +41,9 @@ module.exports = async () => {
             )
             console.log('  最新版本:    ' + chalk.green(latestVersion))
             console.log('  当前版本:    ' + chalk.red(currentVersion))
-
             const uploadResult = await co(function* () {
                 return yield prompt(
-                    '  Do you want to update the package ? [Y/N]'
+                    `  Do you want to update the ${name} ? [Y/N]`
                 )
             })
             if (['y', 'yes'].includes(uploadResult.toLowerCase())) {
@@ -54,6 +53,6 @@ module.exports = async () => {
             }
         }
     } else {
-        console.log(chalk.red('\n获取版本号失败，跳过更新'))
+        console.log(chalk.yellowBright('获取版本号失败，跳过更新\n'))
     }
 }

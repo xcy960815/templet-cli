@@ -11,7 +11,7 @@ const program = new Command()
 const checkVersion = require('./utils/check-version')
 const checkInternet = require('./utils/check-internet')
 const checkFolder = require('./utils/check-folder')
-program.version(require('../package.json').version, '-v,-V, --version')
+program.version(require('../package.json').version, '-v,-V,--version')
 
 /**
  * 初始化指定版本的指令
@@ -76,26 +76,21 @@ program
     .command('help')
     .description('脚手架帮助指令')
     .action(() => {
-        console.log()
         console.log(
             `${chalk.blueBright('tem list')} : ${chalk.blueBright(
                 '查看所有模板列表'
             )}`
         )
-        console.log()
-
         console.log(
             `${chalk.redBright('tem init')} : ${chalk.redBright(
                 '自定义选择模板'
             )}`
         )
-        console.log()
         console.log(
             `${chalk.yellowBright(
                 'tem create <模板名称> <项目名称>'
             )} : ${chalk.yellowBright('指定模板名称创建项目')}`
         )
-        console.log()
     })
 
 program.parse(process.argv)

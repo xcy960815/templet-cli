@@ -10,7 +10,7 @@ const author = require('./author.js')
 
 module.exports = async () => {
     return await inquirer.prompt([
-        vueConfig(),
+        await vueConfig(),
         projectName(),
         version(),
         description(),

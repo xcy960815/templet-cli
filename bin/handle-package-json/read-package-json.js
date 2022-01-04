@@ -7,6 +7,7 @@ module.exports = function (projectName) {
         process.cwd(),
         `${projectName}/package.json`
     )
+
     console.log(`${chalk.yellowBright('===> 开始读取package.json文件\n')}`)
 
     const packagejson = fs.readFileSync(packagePath)

@@ -14,20 +14,25 @@ module.exports = async function writePackageJson(
     answers
 ) {
     // package.json的路径
-    // const packagePath = `${projectName}/package.json`
     const packagePath = path.resolve(
         process.cwd(),
         `${projectName}/package.json`
     )
-    console.log(`⌛️ ${chalk.yellowBright('开始修改package.json文件')}`)
+    console.log(`===> ${chalk.yellowBright('开始修改package.json文件')}\n`)
+
     // 修改package name
     packageContent.name = answers.name ? answers.name : ''
+
     // 修改package version
     packageContent.version = answers.version ? answers.version : ''
+
     // 修改package description
     packageContent.description = answers.description ? answers.description : ''
+
     // 修改package  author
     packageContent.author = answers.author ? answers.author : ''
+
     await fs.writeFileSync(packagePath, JSON.stringify(packageContent))
-    console.log(`🎉 ${chalk.greenBright('修改package.json文件完毕')}`)
+
+    console.log(`===> ${chalk.greenBright('修改package.json文件完毕')}\n`)
 }

@@ -52,10 +52,10 @@ ${chalk.yellowBright('检测到当前路径下有跟项目重复的文件夹,是
             // 当前命令所在的地址
             const cliCurrentPath = process.cwd()
             const folderPath = path.resolve(cliCurrentPath, folderName)
-            console.log(` ${chalk.green('===> 开始删除重复文件')}`)
+            console.log(`${chalk.green('===> 开始删除重复文件')}\n`)
             // 删除文件夹
             await deleteFolder(folderPath)
-            console.log(chalk.green('===> 重复文件删除成功'))
+            console.log(chalk.green('===> 重复文件删除成功\n'))
         } else if (['n', 'no'].includes(askResult.toLowerCase())) {
             const currentDate = new Date()
             const year = currentDate.getFullYear()

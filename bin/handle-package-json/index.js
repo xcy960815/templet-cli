@@ -1,11 +1,23 @@
 const chalk = require('chalk')
 const readPackageJson = require('./read-package-json.js')
 const writePackageJson = require('./write-package-json.js')
+const path = require('path')
+const fs = require('fs')
+
 module.exports = async function (projectName, answers) {
-    // 读取package.json的内容
+    // 读取项目的package.json的内容
     const packageContent = readPackageJson(projectName)
-    // 修改package.json的内容
+
+    // 修改项目的package.json的内容
     await writePackageJson(projectName, packageContent, answers)
-    // 提示项目创建成功 logSymbols.success,
-    console.log(`${chalk.green('【tem cli】项目创建成功')}`)
+
+    // 本cli的package的地址
+    const packagePath = path.resolve(__dirname, '../../package.json')
+
+    const localPackageContent = JSON.parse(fs.readFileSync(packagePath))
+
+    const { name } = localPackageContent
+
+    // 提示项目创建成功
+    console.log(chalk.green(`【 ${name} 】项目创建成功\n`))
 }

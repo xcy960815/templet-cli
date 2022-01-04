@@ -1,41 +1,23 @@
-// 模版列表
-// 在地址中添加了cnpmjs.org 加速下载
-const templates = {
-    vue2: {
-        desc: '(内部使用) vue2 + vuex + route + element-ui + typescript(javascript)',
-        // downloadUrl: 'https://gitlab.vdian.net/bigdata/vue-template.git',
-        downloadUrl: 'https://gitlab.vdian.net/bigdata/vue-template.git',
-    },
-    vue3: {
-        desc: '(内部使用) vue3 + vuex + route + element-plus + typescript(javascript)',
-        // downloadUrl:
-        //     'https://gitlab.vdian.net/bigdata/vue3-template.git#master',
-        downloadUrl: 'https://gitlab.vdian.net/bigdata/vue3-template.git',
-    },
-    'vite + vue3': {
-        desc: '(开源使用) vue3 + vuex + route + vite + element-plus + typescript(javascript)',
-        downloadUrl:
-            'https://github.com.cnpmjs.org/ChongYu-Yease/vue3-vite-template.git#master',
-    },
-    'rollup-js-template': {
-        desc: '(开源使用) 用rollup打包js的模版',
-        downloadUrl:
-            'https://github.com.cnpmjs.org/ChongYu-Yease/rollup-js-template.git#master',
-    },
-    'rollup-ts-template': {
-        desc: '(开源使用)  用rollup打包ts的模版',
-        downloadUrl:
-            'https://github.com.cnpmjs.org/ChongYu-Yease/rollup-ts-template.git#master',
-    },
-    'rollup-vue-components': {
-        desc: '(开源使用)  用rollup打包vue组件的模版',
-        downloadUrl:
-            'https://github.com.cnpmjs.org/ChongYu-Yease/rollup-vue-components.git#master',
-    },
-    'rollup-vue-components-ts': {
-        desc: '(开源使用)  用rollup打包vue-ts组件的模版',
-        downloadUrl:
-            'https://github.com.cnpmjs.org/ChongYu-Yease/rollup-vue-components-ts.git#master',
-    },
+const ora = require('ora')
+const { promisify } = require('util')
+const request = promisify(require('request'))
+const chalk = require('chalk')
+
+/**
+ * 加速方案 来自于 https://zhuanlan.zhihu.com/p/337469043
+ * 查询线上模板列表
+ */
+module.exports = async function () {
+    const spinner = ora(chalk.green('正在查询模板列表'))
+    spinner.start()
+    const result = await request({
+        url: 'https://raw.fastgit.org/ChongYu-Yease/template-list/master/template-list.json',
+        timeout: 3000,
+    }).catch(() => {
+        spinner.fail(chalk.red('😔 模版拉取失败,请检查网络连接后再试一次'))
+        process.exit(1)
+    })
+    spinner.succeed(chalk.green('🎉 模板列表查询完成\n'))
+
+    return JSON.parse(result.body)
 }
-module.exports = { templates }

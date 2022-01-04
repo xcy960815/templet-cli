@@ -5,6 +5,11 @@
 const execa = require('execa')
 const path = require('path')
 const chalk = require('chalk')
+/**
+ * 给当前项目安装依赖包
+ * @param {模板名称} templateName
+ * @param {项目名称} projectName
+ */
 module.exports = async (templateName, projectName) => {
     // 获取当前项目的绝对路径
     const getRootPath = path.resolve(process.cwd(), projectName)
@@ -21,13 +26,13 @@ module.exports = async (templateName, projectName) => {
         cwd: getRootPath,
         stdio: [2, 2, 2],
     })
-    console.log(chalk.greenBright('   🎉依赖包安装完成'))
-    console.log()
+    console.log(chalk.greenBright('   🎉依赖包安装完成\n'))
+
     // cd 到项目里面
     console.log(
-        `   ${chalk.redBright('cd')} ${chalk.yellowBright(projectName)}`
+        `   ${chalk.redBright('cd')} ${chalk.yellowBright(projectName)}\n`
     )
-    console.log()
+
     // 启动
     console.log(
         `   ${chalk.greenBright(isWeidianProject ? 'v' : 'npm run dev')}`
