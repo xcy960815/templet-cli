@@ -4,14 +4,22 @@ const listLog = require('./utils/list-log')
 const downloadTemplate = require('./utils/download-template')
 const templateQuestions = require('./questions/template-questions')
 const initQuestions = require('./questions/init-questions')
-const handleSetPackageJson = require('./handle-package-json/index')
+const handleSetPackageJson = require('./package-json/index')
 const installDependencies = require('./utils/install-dependencies')
 const chalk = require('chalk')
 const program = new Command()
 const checkVersion = require('./utils/check-version')
 const checkInternet = require('./utils/check-internet')
 const checkFolder = require('./utils/check-folder')
-program.version(require('../package.json').version, '-v,-V,--version')
+const fs = require('fs')
+const path = require('path')
+const packagePath = path.resolve(__dirname, '../package.json')
+const packageContent = JSON.parse(fs.readFileSync(packagePath))
+// console.log('packageContent', packageContent)
+const { bin, version } = packageContent
+const cliShell = Object.keys(bin)[0]
+
+program.version(version, '-v,-V,--version')
 
 /**
  * 初始化指定版本的指令
@@ -77,18 +85,18 @@ program
     .description('脚手架帮助指令')
     .action(() => {
         console.log(
-            `${chalk.blueBright('tem list')} : ${chalk.blueBright(
+            `${chalk.blueBright(`${cliShell} list`)} : ${chalk.blueBright(
                 '查看所有模板列表'
             )}`
         )
         console.log(
-            `${chalk.redBright('tem init')} : ${chalk.redBright(
+            `${chalk.redBright(`${cliShell} init`)} : ${chalk.redBright(
                 '自定义选择模板'
             )}`
         )
         console.log(
             `${chalk.yellowBright(
-                'tem create <模板名称> <项目名称>'
+                `${cliShell} create <模板名称> <项目名称>`
             )} : ${chalk.yellowBright('指定模板名称创建项目')}`
         )
     })

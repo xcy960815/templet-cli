@@ -1,7 +1,6 @@
 /**
  * 处理安装依赖包
  */
-
 const execa = require('execa')
 const path = require('path')
 const chalk = require('chalk')

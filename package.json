@@ -4,10 +4,11 @@
     "description": "模板脚手架,内置各种vue模板、rollup-js、rollup-ts、rollup-vue-js、rollup-vue-ts、vscode-webview-ts构建模板，无需配置,一键配置使用",
     "type": "commonjs",
     "bin": {
-        "aaa": "/bin/index.js"
+        "tem": "/bin/index.js"
     },
     "scripts": {
-        "upload": "npm --registry https://registry.npmjs.org/ publish"
+        "dev": "cross-env NODE_ENV=development ENV=daily  node ./bin/init-config.js",
+        "upload": "cross-env NODE_ENV=production ENV=prod node ./bin/init-config.js"
     },
     "repository": {
         "type": "git",
@@ -28,6 +29,7 @@
         "co": "^4.6.0",
         "co-prompt": "^1.0.0",
         "commander": "^8.1.0",
+        "cross-env": "^7.0.3",
         "download-git-repo": "^3.0.2",
         "execa": "^5.1.1",
         "handlebars": "^4.7.7",
