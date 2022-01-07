@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const { Command } = require('commander')
+const program = new Command()
 const listLog = require('./utils/list-log')
 const downloadTemplate = require('./utils/download-template')
 const templateQuestions = require('./questions/template-questions')
@@ -7,7 +8,6 @@ const initQuestions = require('./questions/init-questions')
 const handleSetPackageJson = require('./package-json/index')
 const installDependencies = require('./utils/install-dependencies')
 const chalk = require('chalk')
-const program = new Command()
 const checkVersion = require('./utils/check-version')
 const checkInternet = require('./utils/check-internet')
 const checkFolder = require('./utils/check-folder')
@@ -15,7 +15,7 @@ const fs = require('fs')
 const path = require('path')
 const packagePath = path.resolve(__dirname, '../package.json')
 const packageContent = JSON.parse(fs.readFileSync(packagePath))
-// console.log('packageContent', packageContent)
+
 const { bin, version } = packageContent
 const cliShell = Object.keys(bin)[0]
 
