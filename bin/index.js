@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+const checkNodeVersion = require('./utils/check-node-version')
+checkNodeVersion()
+
 const { Command } = require('commander')
 const program = new Command()
 const listLog = require('./utils/list-log')
@@ -8,7 +11,7 @@ const initQuestions = require('./questions/init-questions')
 const handleSetPackageJson = require('./package-json/index')
 const installDependencies = require('./utils/install-dependencies')
 const chalk = require('chalk')
-const checkVersion = require('./utils/check-version')
+const checkCliVersion = require('./utils/check-cli-version')
 const checkInternet = require('./utils/check-internet')
 const checkFolder = require('./utils/check-folder')
 const fs = require('fs')
@@ -31,7 +34,7 @@ program
         // 检查网络
         await checkInternet()
         // 检查版本号
-        await checkVersion()
+        await checkCliVersion()
         // 收集用户配置
         const answers = await templateQuestions(projectName)
         // 检查文件
@@ -54,7 +57,7 @@ program
         // 检查网络
         await checkInternet()
         // 检查版本号
-        await checkVersion()
+        await checkCliVersion()
         // 收集用户信息
         const answers = await initQuestions()
         const { templateName, projectName } = answers
@@ -76,7 +79,7 @@ program
     .description(chalk.redBright('查看所有模版列表'))
     .action(async () => {
         // 检查版本号
-        await checkVersion()
+        await checkCliVersion()
         listLog()
     })
 
