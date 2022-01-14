@@ -30,7 +30,11 @@ const initQuestions = () => {
                     } else {
                         console.log(
                             chalk.redBright(
-                                'cli名称只能输入英文，数字，下划线，横线'
+                                `cli${
+                                    process.env.NODE_ENV === 'production'
+                                        ? '发布'
+                                        : '测试'
+                                }指令只能输入英文，数字，下划线，横线`
                             )
                         )
                     }

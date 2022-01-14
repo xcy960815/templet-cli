@@ -8,13 +8,15 @@ const chalk = require('chalk')
  * 查询线上模板列表
  */
 module.exports = async function () {
-    const spinner = ora(chalk.green('正在查询模板列表'))
+    const spinner = ora(chalk.green('正在查询模板列表...'))
     spinner.start()
     const result = await request({
-        url: 'https://raw.fastgit.org/ChongYu-Yease/template-list/master/template-list.json',
+        // url: 'https://raw.fastgit.org/ChongYu-Yease/template-list/master/template-list.json',
+        // url: 'https://raw.githubusercontent.com/ChongYu-Yease/template-list/master/template-list.json',
+        url: 'https://cdn.jsdelivr.net/gh/ChongYu-Yease/template-list@master/template-list.json',
         timeout: 3000,
     }).catch(() => {
-        spinner.fail(chalk.red('😔 模版拉取失败,请检查网络连接后再试一次'))
+        spinner.fail(chalk.red('查询失败，请稍后再试'))
         process.exit(1)
     })
     spinner.succeed(chalk.green('🎉 模板列表查询完成\n'))

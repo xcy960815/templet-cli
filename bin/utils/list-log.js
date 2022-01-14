@@ -1,11 +1,9 @@
 const chalk = require('chalk')
 
-const getTemplateList = require('./template-list.js')
 /**
  * 循环输出 从网上查询的模板列表
  */
-module.exports = async function () {
-    const templates = await getTemplateList()
+module.exports = async function (templates) {
     const templateNames = Object.keys(templates)
     // 英文的最大长度
     const enMaxLength = templateNames.reduce((previousValue, currentValue) => {

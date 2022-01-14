@@ -14,6 +14,7 @@ const chalk = require('chalk')
 const checkCliVersion = require('./utils/check-cli-version')
 const checkInternet = require('./utils/check-internet')
 const checkFolder = require('./utils/check-folder')
+const getTemplateList = require('./utils/template-list.js')
 const fs = require('fs')
 const path = require('path')
 const packagePath = path.resolve(__dirname, '../package.json')
@@ -80,7 +81,8 @@ program
     .action(async () => {
         // 检查版本号
         await checkCliVersion()
-        listLog()
+        const templates = await getTemplateList()
+        listLog(templates)
     })
 
 program
