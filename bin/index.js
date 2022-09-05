@@ -18,7 +18,7 @@ const getTemplateList = require('./utils/template-list.js')
 const fs = require('fs')
 const path = require('path')
 const packagePath = path.resolve(__dirname, '../package.json')
-const packageContent = JSON.parse(fs.readFileSync(packagePath))
+const packageContent = JSON.parse(fs.readFileSync(packagePath) || "{}")
 
 const { bin, version } = packageContent
 const cliShell = Object.keys(bin)[0]
