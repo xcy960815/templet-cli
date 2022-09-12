@@ -1,5 +1,6 @@
 /**
- * 选择指定版本的问题
+ * @desc 选择指定版本的问题
+ * @returns {Object}
  */
 const inquirer = require('inquirer')
 const projectName = require('./project-name.js')

@@ -1,5 +1,6 @@
 /**
- * 问题
+ * @desc 问题
+ * @returns {Object}
  */
 const inquirer = require('inquirer')
 const projectName = require('./project-name.js')

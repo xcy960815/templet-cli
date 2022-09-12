@@ -42,5 +42,4 @@ function ProgressBar(description, barLength) {
     }
 }
 
-// 模块导出
 module.exports = ProgressBar

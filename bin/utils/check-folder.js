@@ -5,17 +5,6 @@ const prompt = require('co-prompt')
 const deleteFolder = require('./delete-folder')
 const chalk = require('chalk')
 const ora = require('ora')
-/* 
- 1. fs.stat  检测是文件还是目录(目录 文件是否存在) 
- 2. fs.mkdir  创建目录 （创建之前先判断是否存在） 
- 3. fs.writeFile  写入文件(文件不存在就创建,但不能创建目录) 
- 4. fs.appendFile 写入追加文件 
- 5.fs.readFile 读取文件 
- 6.fs.readdir 读取目录 
- 7.fs.rename 重命名 
- 8. fs.rmdir  删除目录 
- 9. fs.unlink 删除文件 
-*/
 
 // 返回运行文件所在的目录 __dirname
 
@@ -24,8 +13,8 @@ const ora = require('ora')
 // 当前命令所在的目录  process.cwd()
 
 /**
- * 检查当前路径下面 是否存在跟项目重名的文件夹
- * @param {创建的文件夹名称} folderName
+ * @desc 检查当前路径下面 是否存在跟项目重名的文件夹
+ * @param {string} folderName
  */
 module.exports = async (folderName) => {
     // 目录列表
@@ -42,8 +31,8 @@ ${chalk.yellowBright('检测到当前路径下有跟项目重复的文件夹,是
     ${chalk.greenBright('Y -> 删除重名的文件夹')}
     
     ${chalk.greenBright(
-        'N -> 保留重名的文件夹并基于当前文件夹创建一个随机的文件夹后缀'
-    )}
+                    'N -> 保留重名的文件夹并基于当前文件夹创建一个随机的文件夹后缀'
+                )}
     
     `
             )

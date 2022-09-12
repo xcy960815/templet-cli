@@ -1,5 +1,6 @@
 /**
- * 项目版本号
+ * @desc 项目版本号
+ * @returns {Object}
  */
 
 module.exports = () => ({

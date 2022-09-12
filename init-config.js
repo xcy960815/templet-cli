@@ -15,14 +15,11 @@ const initQuestions = () => {
         {
             type: 'input',
             name: 'command',
-            message: `请输入cli${
-                process.env.NODE_ENV === 'production' ? '发布' : '测试'
-            }指令`,
+            message: `请输入cli${process.env.NODE_ENV === 'production' ? '发布' : '测试'}指令`,
             validate: function (answer) {
                 if (answer.length < 1) {
-                    return `请输入cli${
-                        process.env.NODE_ENV === 'production' ? '发布' : '测试'
-                    }指令`
+                    return `请输入cli${process.env.NODE_ENV === 'production' ? '发布' : '测试'
+                        }指令`
                 } else {
                     const reg = /^[5A-Za-z0-9-\_]+$/
                     if (reg.test(answer)) {
@@ -30,10 +27,9 @@ const initQuestions = () => {
                     } else {
                         console.log(
                             chalk.redBright(
-                                `cli${
-                                    process.env.NODE_ENV === 'production'
-                                        ? '发布'
-                                        : '测试'
+                                `cli${process.env.NODE_ENV === 'production'
+                                    ? '发布'
+                                    : '测试'
                                 }指令只能输入英文，数字，下划线，横线`
                             )
                         )
@@ -142,20 +138,16 @@ const runUnlinkCommand = async () => {
     // 执行 npm unlink 移除全局指令 end
 }
 /**
- * 执行npm install 操作
+ * @desc 执行npm install 操作
  */
 const runInstallCommand = async () => {
     // 安装依赖包 start
-
     console.log(chalk.greenBright('\n===> 开始安装依赖包\n'))
-
     await execa('npm install', {
         shell: true,
         stdio: [2, 2, 2],
     })
-
     console.log(chalk.greenBright('\n===> 依赖包安装完成\n'))
-
     // 安装依赖包 end
 }
 /**

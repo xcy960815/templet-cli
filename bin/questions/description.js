@@ -1,5 +1,6 @@
 /**
- * 项目描述
+ * @desc 项目描述
+ * @returns {Object}
  */
 
 module.exports = () => ({
