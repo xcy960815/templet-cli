@@ -15,12 +15,8 @@ const checkCliVersion = require('./utils/check-cli-version')
 const checkInternet = require('./utils/check-internet')
 const checkFolder = require('./utils/check-folder')
 const getTemplateList = require('./utils/template-list.js')
-const fs = require('fs')
-const path = require('path')
-const packagePath = path.resolve(__dirname, '../package.json')
-const packageContent = JSON.parse(fs.readFileSync(packagePath) || "{}")
-
-const { bin, version } = packageContent
+const getPackageContent = require('./utils/get-package-content')
+const { bin, version } = getPackageContent(['bin', 'version'])
 const cliShell = Object.keys(bin)[0]
 
 program.version(version, '-v,-V,--version')
@@ -88,7 +84,9 @@ program
 program
     .command('help')
     .description('脚手架帮助指令')
-    .action(() => {
+    .action(async () => {
+        // 检查版本号
+        await checkCliVersion()
         console.log(
             `${chalk.blueBright(`${cliShell} list`)} : ${chalk.blueBright(
                 '查看所有模板列表'

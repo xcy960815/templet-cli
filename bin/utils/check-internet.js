@@ -1,8 +1,10 @@
 // 检测网络
 const isOnline = require('is-online')
 const chalk = require('chalk')
+
 /**
- * 检查网络
+ * @desc 检查网络
+ * @returns {Promise<void>}
  */
 module.exports = async () => {
     const online = await isOnline({

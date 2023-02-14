@@ -1,5 +1,5 @@
+
 /**
- *
  * @param {当前的版本号} currentVersion
  * @returns 递增之后的版本号
  */

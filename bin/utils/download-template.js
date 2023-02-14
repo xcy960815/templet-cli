@@ -5,8 +5,9 @@ const { promisify } = require('util')
 const getTemplatesList = require('./template-list.js')
 const chalk = require('chalk')
 const ora = require('ora')
+
 /**
- * 下载github的模板
+ * @desc 下载github的模板
  * @param {模板名称} templateName
  * @param {项目名称} projectName
  * @param {inquirer返回的参数} answers

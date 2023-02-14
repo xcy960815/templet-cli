@@ -1,8 +1,9 @@
 const fs = require('fs')
 
 /**
- * 删除文件
- * @param {文件地址} filePath
+ * @desc 删除文件
+ * @param {string} filePath
+ * @returns {boolean} 删除成功返回true 否则返回false
  */
 module.exports = function deleteFolder(filePath) {
     if (fs.existsSync(filePath)) {

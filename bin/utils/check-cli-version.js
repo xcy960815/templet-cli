@@ -2,19 +2,17 @@ const semver = require('semver')
 const co = require('co')
 const prompt = require('co-prompt')
 const chalk = require('chalk')
-// const packageContent = require('../../package.json')
 const { promisify } = require('util')
 const uploadVersion = require('./upload-version')
-const fs = require('fs')
-const path = require('path')
-const packagePath = path.resolve(__dirname, '../../package.json')
-const { name, version } = JSON.parse(fs.readFileSync(packagePath))
+const getPackageContent = require('./get-package-content')
+const { name, version } = getPackageContent(['name', 'version'])
 const ora = require('ora')
 /**
- * 检查线上最新的脚手架版本号
+ * @desc 检查线上最新的脚手架版本号
+ * @return {Promise<void>}
  */
 module.exports = async () => {
-    const spinner = ora(chalk.green('正在检查脚手架版本'))
+    const spinner = ora(chalk.green('正在检查脚手架版本\n'))
     spinner.start()
     const request = promisify(require('request'))
     const result = await request({
@@ -22,10 +20,10 @@ module.exports = async () => {
         //为了用户体验，这里时间不能太长
         timeout: 3000,
     }).catch(() => {
-        spinner.fail(chalk.red('😔 脚手架版本检查失败请重试一次'))
+        spinner.fail(chalk.red('脚手架版本检查失败请重试一次\n'))
         process.exit(1)
     })
-    spinner.succeed(chalk.green('🎉 手架版本检查完成\n'))
+    spinner.succeed(`${chalk.green('🎉 手架版本检查完成')}\n`)
     const { body, statusCode } = result
     if (statusCode === 200) {
         const parseBody = JSON.parse(body)

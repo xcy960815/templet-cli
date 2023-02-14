@@ -1,5 +1,6 @@
 /**
- * 作者
+ * @desc 作者
+ * @returns {Object}
  */
 const getUserInfo = require('../utils/get-user-info.js')
 module.exports = () => {

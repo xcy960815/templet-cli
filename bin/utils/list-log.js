@@ -1,7 +1,9 @@
 const chalk = require('chalk')
 
 /**
- * 循环输出 从网上查询的模板列表
+ * @desc 循环输出 从网上查询的模板列表
+ * @param {Array} templates
+ * @returns {void}
  */
 module.exports = async function (templates) {
     const templateNames = Object.keys(templates)
