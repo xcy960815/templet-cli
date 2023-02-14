@@ -30,7 +30,5 @@ module.exports = async (templateName, projectName) => {
   );
 
   // 启动
-  console.log(
-    `   ${chalk.greenBright(isWeidianProject ? "v" : "npm run dev")}`
-  );
+  console.log(`   ${chalk.greenBright("npm run dev")}`);
 };
