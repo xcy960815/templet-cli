@@ -8,7 +8,7 @@ const writePackageContent = require('./write-package-content.js');
  * @param {用户配置} answers
  */
 module.exports = async function (projectName, answers) {
-  //创建的项目的 package.json的路径
+  // 创建的项目的 package.json的路径
   const packagePath = path.resolve(process.cwd(), `${projectName}/package.json`);
   // 读取项目的package.json的内容
   const projectPackageContent = readPackageContent(packagePath);

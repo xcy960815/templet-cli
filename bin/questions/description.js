@@ -4,7 +4,7 @@
  */
 
 module.exports = () => ({
-    type: 'input',
-    name: 'description',
-    message: '请输入项目描述',
-})
+  type: 'input',
+  name: 'description',
+  message: '请输入项目描述',
+});
