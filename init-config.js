@@ -201,7 +201,8 @@ const initConfig = async () => {
     // 获取下一个版本
     const newVersion = await updatePackageVersion();
     // const { command } = await initQuestions();
-    const command = readCommand('publishCommand');
+    const command = await readCommand('publishCommand');
+
     const packageValue = {
       version: newVersion,
       bin: {
