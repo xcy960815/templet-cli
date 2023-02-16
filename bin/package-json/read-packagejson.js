@@ -1,5 +1,6 @@
 const fs = require('fs');
 const chalk = require('chalk');
+
 /**
  * @desc 读取package.json文件内容
  * @param {package.json 的路径} packagePath

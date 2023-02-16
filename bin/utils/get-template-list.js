@@ -4,8 +4,8 @@ const request = promisify(require('request'));
 const chalk = require('chalk');
 
 /**
- * @link 加速方案 来自于 https://zhuanlan.zhihu.com/p/337469043
  * @desc 查询线上模板列表
+ * @link 加速方案 来自于 https://zhuanlan.zhihu.com/p/337469043
  */
 module.exports = async function () {
   const spinner = ora(chalk.greenBright('正在查询模板相关配置...'));

@@ -1,13 +1,13 @@
-const getTemplatesList = require('../utils/template-list');
+const getTemplatesList = require('../utils/get-template-list');
 
 /**
  * @desc 选择指定版本的问题
- * @returns {Object}
+ * @returns {type: 'list', message: '请选择模版版本', name: 'templateName', choices: Array<{ name: key }>}
  */
 module.exports = async () => {
-  const templates = await getTemplatesList();
+  const templateList = await getTemplatesList();
   const choices = [];
-  for (const key in templates) {
+  for (const key in templateList) {
     choices.push({ name: key });
   }
   return {

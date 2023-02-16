@@ -18,7 +18,7 @@ module.exports = async () => {
   const request = promisify(require('request'));
   const result = await request({
     url: `https://registry.npmjs.org/${name}`,
-    //为了用户体验，这里时间不能太长
+    // 为了用户体验，这里时间不能太长
     timeout: 3000,
   }).catch(() => {
     spinner.fail(chalk.red('脚手架版本检查失败请重试一次\n'));

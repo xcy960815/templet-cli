@@ -22,8 +22,8 @@ module.exports = async (templateName, projectName) => {
   });
   console.log(chalk.greenBright('   🎉依赖包安装完成\n'));
 
-  // 输出cd 指令
+  // 输出 cd 指令
   console.log(`   ${chalk.redBright('cd')} ${chalk.yellowBright(projectName)}\n`);
-  // 输出启动指令
+  // 输出 启动 指令
   console.log(`   ${chalk.greenBright('npm run dev')}`);
 };
