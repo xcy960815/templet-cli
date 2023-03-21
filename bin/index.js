@@ -83,17 +83,21 @@ program
   });
 
 /**
+ * @desc 脚手架更新指令
+ * @returns {String}
+ */
+program
+  .command('update')
+  .description('脚手架更新指令')
+  .action(async () => {
+    // 检查版本号
+    await checkCliVersion();
+    console.log(chalk.blueBright('脚手架已经是最新版本'));
+  });
+
+/**
  * @desc 脚手架帮助指令
  * @returns {String}
- * @example
- * 1. 查看所有模板列表
- * 2. 自定义选择模板
- * 3. 指定模板名称创建项目
- * 4. 脚手架帮助指令
- * 5. 脚手架版本号
- * 6. 脚手架更新指令
- * 7. 脚手架卸载指令
- * 8. 脚手架重置指令
  */
 program
   .command('help')

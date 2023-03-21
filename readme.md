@@ -1,4 +1,5 @@
-### templet-cli 
+### templet-cli
+
 > 一个简单的模板 cli
 
 ### 安装
@@ -29,10 +30,15 @@ tem create <templateName> <projectName>
     projectName --> 项目名称   自己的项目名称
 ```
 
+#### 更新指令
+
+```shell
+tem update
+
+```
+
 #### 帮助指令
-    
+
 ```shell
 tem help
 ```
-
-
