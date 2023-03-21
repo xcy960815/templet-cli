@@ -4,7 +4,6 @@ const co = require('co');
 const prompt = require('co-prompt');
 const deleteFolder = require('./delete-folder');
 const chalk = require('chalk');
-const ora = require('ora');
 
 // 返回运行文件所在的目录 __dirname
 

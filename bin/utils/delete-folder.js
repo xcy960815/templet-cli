@@ -1,5 +1,5 @@
 const fs = require('fs');
-
+const chalk = require('chalk');
 /**
  * @desc 删除文件
  * @param {string} filePath
@@ -16,9 +16,17 @@ module.exports = function deleteFolder(filePath) {
         deleteFolder(nextFilePath);
       } else {
         // delete file
-        fs.unlinkSync(nextFilePath);
+        try {
+          fs.unlinkSync(nextFilePath);
+        } catch (err) {
+          console.log(chalk.redBright(`无法删除文件 ${nextFilePath}: ${err.message}`));
+        }
       }
     });
-    fs.rmdirSync(filePath);
+    try {
+      fs.rmdirSync(filePath);
+    } catch (err) {
+      console.log(chalk.redBright(`无法删除文件夹 ${filePath}: ${err.message}`));
+    }
   }
 };
