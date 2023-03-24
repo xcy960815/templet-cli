@@ -19,7 +19,6 @@ const getPackageContent = require('./utils/get-package-content');
 const { bin, version } = getPackageContent(['bin', 'version']);
 // 获取当前的指令
 const cliShell = Object.keys(bin)[0];
-
 program.version(version, '-v,-V,--version');
 
 /**
