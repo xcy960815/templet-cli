@@ -1,6 +1,6 @@
 ### templet-cli
 
-> 一个简单的模板 cli
+> 一个提供各种 vue 模板、rollup-js、rollup-ts、rollup-vue-js、rollup-vue-ts、vscode-webview-ts 模板的 cli
 
 ### 安装
 
